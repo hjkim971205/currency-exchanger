@@ -1,66 +1,37 @@
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
-import WeatherService from './services/weather-service.js';
-import GiphyService from './services/giphy-service.js';
+import ExchangeService from './weather-service.js';
 
 // Business Logic
 
-function getAPIData(city) {
-  WeatherService.getWeather(city)
-    .then(function(weatherResponse) {
-      if (weatherResponse instanceof Error) {
-        const errorMessage = `there was a problem accessing the weather data from OpenWeather API for ${city}: 
-        ${weatherResponse.message}`;
-        throw new Error(errorMessage);
-      } 
-      const description = weatherResponse.weather[0].description;
-      printWeather(description, city);
-      return GiphyService.getGif(description);
-    })
-    .then(function(giphyResponse) {
-      if (giphyResponse instanceof Error) {
-        const errorMessage = `there was a problem accessing the gif data from Giphy API: 
-        ${giphyResponse.message}.`;
-        throw new Error(errorMessage);
-      } 
-      displayGif(giphyResponse, city);
-    })
-    .catch(function(error) {
-      printError(error);
+function getRate(currency) {
+  ExchangeService.getRate(currency)
+    .then(function(response) {
+      if (response.main) {
+        printElements(response, currency);
+      } else {
+        printError(response, currency);
+      }
     });
 }
 
 // UI Logic
 
-function printWeather(description, city) {
-  document.querySelector('#weather-description').innerText = `The weather in ${city} is ${description}.`;
+function printElements(response, currency) {
+  document.querySelector('#showResponse').innerText = `The exchange rate for ${currency} is ${response.conversion_rates}%.`;
 }
 
-function printError(error) {
-  document.querySelector('#error').innerText = error;
-}
-
-function displayGif(response, city) {
-  const url = response.data[0].images.downsized.url;
-  const img = document.createElement("img");
-  img.src = url;
-  img.alt = `${city} weather`;
-  document.querySelector("#gif").append(img);
-}
-
-function clearResults() {
-  document.querySelector("#gif").innerText = null;
-  document.querySelector('#error').innerText = null;
-  document.querySelector('#weather-description').innerText = null;
+function printError(error, currency) {
+  document.querySelector('#showResponse').innerText = `There was an error accessing the data for ${currency}: 
+  ${error}.`;
 }
 
 function handleFormSubmission(event) {
   event.preventDefault();
-  clearResults();
-  const city = document.querySelector('#location').value;
+  const currency = document.querySelector('#location').value;
   document.querySelector('#location').value = null;
-  getAPIData(city);
+  getRate(currency);
 }
 
 window.addEventListener("load", function() {
