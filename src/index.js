@@ -5,35 +5,39 @@ import ExchangeService from './weather-service.js';
 
 // Business Logic
 
-function getRate(currency) {
-  ExchangeService.getRate(currency)
+function getRate(from, to, amount) {
+  //console.log("getRate called with", from, to, amount);
+  ExchangeService.getRate(from, to, amount)
     .then(function(response) {
-      if (response.main) {
-        printElements(response, currency);
+      if (response.conversion_result) {
+        printElements(response);
       } else {
-        printError(response, currency);
+        printError();
       }
     });
 }
 
 // UI Logic
 
-function printElements(response, currency) {
-  document.querySelector('#showResponse').innerText = `The exchange rate for ${currency} is ${response.conversion_rates}%.`;
+function printElements(response, from) {
+  document.querySelector('#result').innerText = `The exchange rate for ${from} is ${response.conversion_rates}.`;
 }
 
-function printError(error, currency) {
-  document.querySelector('#showResponse').innerText = `There was an error accessing the data for ${currency}: 
+function printError(error, from) {
+  document.querySelector('#result').innerText = `There was an error accessing the data for ${from}: 
   ${error}.`;
 }
 
 function handleFormSubmission(event) {
   event.preventDefault();
-  const currency = document.querySelector('#location').value;
-  document.querySelector('#location').value = null;
-  getRate(currency);
+  const from = document.querySelector('#from').value;
+  const to = document.querySelector('#to').value;
+  const amount = document.querySelector("#amount").value;
+  getRate(from, to, amount);
 }
 
 window.addEventListener("load", function() {
   document.querySelector('form').addEventListener("submit", handleFormSubmission);
+  const convertBtn = document.querySelector('#convert');
+  convertBtn.addEventListener("click", handleFormSubmission);
 });

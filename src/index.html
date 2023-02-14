@@ -1,22 +1,31 @@
 <html lang="en-US">
 <head>
-  <title>Weather</title>
+  <title>Currency Exchange</title>
 </head>
 <body>
   <div class="container">
-    <h1>Get Weather Conditions From Anywhere!</h1>
-    <p>To get the current weather conditions for a location, please enter the city name or the city and state separated by a comma. Here are three examples:</p>
-    <pre>
-      Portland
-      Atlanta, Georgia
-      cairo
-    </pre>
+    <h1>Convert your currency to any currecy in our database!</h1>
+    <p>To convert, select your currency and input the amount you would like to convert.</p>
     <form>
-      <label for="location">Enter a location:</label>
-      <input id="location" type="text" name="location">
-      <button type="submit" class="btn-success" id="weatherLocation">Get Current Temperature and Humidity</button>
-    </form>
-    <p id="showResponse"></p>
+      <label>From:</label>
+      <select id="from">
+         <option value="USD">USD</option>
+         <option value="EUR">EUR</option>
+         <option value="GBP">GBP</option>
+         <option value="INR">INR</option>
+      </select>
+      <label>To:</label>
+      <select id="to">
+         <option value="USD">USD</option>
+         <option value="EUR">EUR</option>
+         <option value="GBP">GBP</option>
+         <option value="INR">INR</option>
+      </select>
+      <label>Amount:</label>
+      <input type="text" id="amount" />
+      <button type="button" id="convert">Convert</button>
+      <p id="result"></p>
+   </form>
   </div>
 </body>
 </html>
