@@ -5,12 +5,12 @@ import ExchangeService from './weather-service.js';
 
 // Business Logic
 
-function getRate(from, to) {
-  ExchangeService.getRate(from, to)
+function getRate(from, to, amount) {
+  ExchangeService.getRate(from, to, amount)
     .then(function(response) {
       if (response.result === "success") {
         console.log(response.conversion_rate);
-        printElements(response, from, to);
+        printElements(response, from, to, amount);
       } else {
         printError();
       }
@@ -19,8 +19,8 @@ function getRate(from, to) {
 
 // UI Logic
 
-function printElements(response, from, to) {
-  document.querySelector('#result').innerText = `The exchange rate for ${from} to ${to} is ${response.conversion_rate}.`;
+function printElements(response, from, to, amount) {
+  document.querySelector('#result').innerText = `The exchange rate for ${from} to ${to} is 1:${response.conversion_rate} and the conversion for ${amount}${from} is ${response.conversion_result}${to}`;
 }
 
 function printError(error, from) {
