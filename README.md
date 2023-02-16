@@ -15,6 +15,8 @@
 
 ## Description
 
+This application will call in the API from currency exchange website use the information on there to exchange the amount of money that the use puts in to exchange to some other currency. The output will show the 1:new ratio of the currency as well. 
+
 ## Setup/Installation Requirements
 
 * _Installing all packages with $ npm install._
@@ -27,4 +29,10 @@
 
 * _N/A as of now_
 
-## License Hyung Jin Kim 2023
+## License
+
+MIT
+
+If any issues arise contact hyungjinkim1205@gmail.com
+
+Copyright (c) 2023 Hyung Jin Kim(s)
