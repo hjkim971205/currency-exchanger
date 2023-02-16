@@ -1,4 +1,4 @@
-#Currency Exchange
+# Currency Exchange
 
 #### This application will allow the user to choose a currency and input an ammount to be exchanged into some other currency of choice. The output will result in the amount to be exchanged and the exchange rate as well.
 
