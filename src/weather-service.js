@@ -1,8 +1,7 @@
 export default class ExchangeService {
-  static getRate(from, to, amount) {
-    return fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/pair/${from}/${to}/${amount}`)
+  static getRate(from) {
+    return fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/${from}/`)
       .then(function(response) {
-        console.log(response);
         if (!response.ok) {
           const errorMessage = `${response.status} ${response.statusText}`;
           throw new Error(errorMessage);

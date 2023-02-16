@@ -5,12 +5,11 @@ import ExchangeService from './weather-service.js';
 
 // Business Logic
 
-function getRate(from, to, amount) {
-  //console.log("getRate called with", from, to, amount);
-  ExchangeService.getRate(from, to, amount)
+function getRate(from) {
+  ExchangeService.getRate(from)
     .then(function(response) {
-      if (response.conversion_result) {
-        printElements(response);
+      if (response.result === "success") {
+        printElements(response, from);
       } else {
         printError();
       }
@@ -37,7 +36,5 @@ function handleFormSubmission(event) {
 }
 
 window.addEventListener("load", function() {
-  document.querySelector('form').addEventListener("submit", handleFormSubmission);
-  const convertBtn = document.querySelector('#convert');
-  convertBtn.addEventListener("click", handleFormSubmission);
+  document.querySelector('.container').addEventListener("submit", handleFormSubmission);
 });
