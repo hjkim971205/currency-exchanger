@@ -1,7 +1,7 @@
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
-import ExchangeService from './weather-service.js';
+import ExchangeService from './exchangeService.js';
 
 // Business Logic
 
