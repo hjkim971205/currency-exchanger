@@ -9,6 +9,7 @@ function getRate(from, to) {
   ExchangeService.getRate(from, to)
     .then(function(response) {
       if (response.result === "success") {
+        console.log(response.conversion_rate);
         printElements(response, from, to);
       } else {
         printError();
@@ -19,7 +20,7 @@ function getRate(from, to) {
 // UI Logic
 
 function printElements(response, from, to) {
-  document.querySelector('#result').innerText = `The exchange rate for ${from} to ${to} is ${response.conversion_rates}.`;
+  document.querySelector('#result').innerText = `The exchange rate for ${from} to ${to} is ${response.conversion_rate}.`;
 }
 
 function printError(error, from) {
