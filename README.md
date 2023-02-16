@@ -1,15 +1,17 @@
-# (Currency Exchange)
+#Currency Exchange
 
-#### (Brief Description of Application)
+#### This application will allow the user to choose a currency and input an ammount to be exchanged into some other currency of choice. The output will result in the amount to be exchanged and the exchange rate as well.
 
-#### By (Your Name Here)
+#### By Hyung Jin Kim
 
 ## Technologies Used
 
-* _List all_
-* _the major technologies_
-* _you used in your project_
-* _here_
+* _HTML_
+* _CSS_
+* _Javascript_
+* _Bootstrap_
+* _API_
+* _Webpack_
 
 ## Description
 
@@ -23,7 +25,6 @@
 
 ## Known Bugs
 
-* _Any known issues_
-* _should go here_
+* _N/A as of now_
 
-## License
+## License Hyung Jin Kim 2023
